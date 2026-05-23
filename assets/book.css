@@ -1,0 +1,444 @@
+/* ============================================================
+   Custom CSS cho HTML build (phối hợp với water.css base).
+   Áp dụng cho khối "Về tác giả" và một vài tinh chỉnh chung.
+   ============================================================ */
+
+/* --- Author card (Về tác giả) ---
+   Structure (raw HTML in markdown to avoid pandoc <p> wrapping):
+     .author-card
+       > img.author-photo
+       > .author-info
+           > h3.author-name
+           > p.author-role
+           > p.author-bio
+*/
+
+.author-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+  padding: 1.5rem 1.75rem;
+  background: rgba(58, 122, 254, 0.04);
+  border-left: 4px solid #3a7afe;
+  border-radius: 8px;
+}
+
+.author-card .author-photo {
+  width: 220px;
+  height: 220px;
+  min-width: 220px;            /* prevent flex shrink */
+  min-height: 220px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  border: 4px solid #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+}
+
+.author-card .author-info {
+  flex: 1 1 auto;
+}
+
+.author-card .author-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0 0 0.3rem 0;
+}
+
+.author-card .author-role {
+  font-style: italic;
+  color: #555;
+  margin: 0 0 0.8rem 0;
+}
+
+.author-card .author-bio {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* --- Acknowledgments / Lời cảm ơn (dưới Về tác giả) --- */
+.acknowledgments {
+  margin-top: 2rem;
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(135deg, rgba(58, 122, 254, 0.04), rgba(31, 157, 85, 0.04));
+  border: 1px solid rgba(58, 122, 254, 0.18);
+  border-radius: 10px;
+}
+
+.acknowledgments h4 {
+  margin: 0 0 0.8rem 0;
+  font-size: 1.15rem;
+  color: #2a5fb8;
+}
+
+.acknowledgments p {
+  margin: 0 0 0.9rem 0;
+  line-height: 1.65;
+}
+
+.mentors-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.8rem 0 1rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.4rem;
+}
+
+@media (min-width: 700px) {
+  .mentors-list {
+    grid-template-columns: 1fr 1fr;        /* 2 column trên màn rộng */
+    gap: 0.5rem 1.5rem;
+  }
+  /* Item cuối ("… và nhiều anh/chị khác") trải hết width */
+  .mentors-list li:last-child {
+    grid-column: 1 / -1;
+    margin-top: 0.5rem;
+    padding-top: 0.6rem;
+    border-top: 1px dashed rgba(0, 0, 0, 0.15);
+    text-align: center;
+    color: #555;
+  }
+}
+
+.mentors-list li {
+  padding: 0.35rem 0.6rem;
+  background: #fff;
+  border-left: 3px solid #3a7afe;
+  border-radius: 4px;
+  font-size: 0.96rem;
+}
+
+.acknowledgments-footer {
+  margin-top: 1rem !important;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-style: italic;
+  color: #444;
+  text-align: center;
+}
+
+/* EngineerPro logo card */
+.engineerpro-card {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.engineerpro-card .logo {
+  width: 240px;
+  max-width: 80%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Title block tweaks ---
+   Thêm dòng "Project này được thực hiện bởi:" trước danh sách author.
+   Pandoc render mỗi author dưới dạng <p class="author">; ta dùng pseudo-element
+   để chèn text vào trước author đầu tiên mà không cần đụng metadata. */
+.author:first-of-type::before {
+  content: "Tác giả:";
+  display: block;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 1rem 0 0.3rem 0;
+  color: #333;
+}
+
+/* Khoảng cách giữa 2 author cho gần nhau hơn (như khối tác giả thật) */
+.author + .author {
+  margin-top: -0.4rem;
+}
+
+/* Abstract block (pandoc inserts ngay giữa title-block và TOC).
+   Đây là chỗ chứa banner "Về EngineerPro" trên cùng. */
+.abstract {
+  margin: 2rem 0 3rem 0;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, rgba(58, 122, 254, 0.06), rgba(58, 122, 254, 0.02));
+  border: 1px solid rgba(58, 122, 254, 0.25);
+  border-radius: 10px;
+}
+
+/* Ẩn "Abstract" heading mặc định của pandoc — đã set abstract-title=""
+   trong metadata.yaml. Phòng hờ override CSS. */
+.abstract .abstract-title {
+  display: none;
+}
+
+.engineerpro-banner blockquote {
+  border-left: 4px solid #3a7afe;
+  background: rgba(58, 122, 254, 0.08);
+  padding: 0.8rem 1.2rem;
+  margin: 1rem 0;
+  border-radius: 4px;
+  font-size: 1.05rem;
+}
+
+.engineerpro-banner ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.engineerpro-banner ul li {
+  padding: 0.25rem 0;
+}
+
+.engineerpro-banner ul li::before {
+  content: "→ ";
+  color: #3a7afe;
+  font-weight: bold;
+  margin-right: 0.3rem;
+}
+
+/* --- Donate box --- */
+.donate-box {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 78, 78, 0.04);
+  border: 1px dashed rgba(255, 78, 78, 0.35);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.donate-box > p {
+  margin: 0 0 0.8rem 0;
+  line-height: 1.6;
+}
+
+.donate-link {
+  display: inline-block;
+  margin: 0.2rem 0;
+  padding: 0.6rem 1.4rem;
+  background: #ff4e4e;
+  color: #fff !important;
+  border-radius: 999px;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.donate-link:hover {
+  background: #e63b3b;
+  transform: translateY(-1px);
+}
+
+/* --- Gold sponsor tier --- */
+.gold-sponsor {
+  margin-top: 1.5rem;
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(135deg, #fff7d6 0%, #fde9a8 100%);
+  border: 2px solid #d4a017;
+  border-radius: 12px;
+  text-align: left;
+  box-shadow: 0 4px 18px rgba(212, 160, 23, 0.18);
+}
+
+.gold-sponsor h4 {
+  margin: 0 0 0.8rem 0;
+  font-size: 1.2rem;
+  color: #7a5a00;
+  text-align: center;
+  letter-spacing: 0.2px;
+}
+
+.gold-sponsor p {
+  margin: 0 0 0.8rem 0;
+  line-height: 1.65;
+  color: #3a2c00;
+}
+
+.gold-sponsor .gift-callout {
+  margin: 1rem 0;
+  padding: 1rem 1.25rem;
+  background: #fffbeb;
+  border-left: 4px solid #d4a017;
+  border-radius: 6px;
+  line-height: 1.7;
+  color: #2a2200;
+}
+
+.fb-link {
+  display: inline-block;
+  margin-top: 0.4rem;
+  padding: 0.6rem 1.4rem;
+  background: #1877f2;
+  color: #fff !important;
+  border-radius: 8px;
+  text-decoration: none !important;
+  font-weight: 600;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.fb-link:hover {
+  background: #145dbf;
+  transform: translateY(-1px);
+}
+
+/* --- YouTube embed (responsive 16:9) ---
+   Dùng iframe official embed code (có `?si=` token) — bypass embedding
+   config error. Wrap trong .video-embed để force 16:9 aspect ratio. */
+.video-embed {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 1.5rem auto 0.75rem auto;
+  padding-top: 56.25%;            /* 16:9 = 9/16 = 0.5625 */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  background: #000;
+}
+
+.video-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* --- Video card (legacy: thumbnail click-to-open YouTube) ---
+   Giữ lại trong CSS phòng hờ cần fallback sau này nếu iframe lại die. */
+.video-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  margin: 1.5rem auto 0.75rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.25);
+}
+
+.video-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.video-card .play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 0, 0, 0.92);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  padding-left: 0.4rem;             /* nudge ▶ visually center */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.video-card:hover .play-button {
+  background: rgba(220, 0, 0, 1);
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.video-card .video-card-overlay {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.25rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.video-caption {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.video-caption a {
+  color: #c00;
+  font-weight: 500;
+}
+
+/* Project goal block — đặt ở đầu abstract, trước EngineerPro card. */
+.project-goal {
+  margin-bottom: 1.8rem;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid #1f9d55;
+  background: rgba(31, 157, 85, 0.05);
+  border-radius: 6px;
+}
+
+.project-goal p {
+  margin: 0 0 0.6rem 0;
+  line-height: 1.6;
+}
+
+.project-goal p:last-child {
+  margin-bottom: 0;
+}
+
+/* On narrow screens, stack photo above text */
+@media (max-width: 700px) {
+  .author-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.2rem;
+    padding: 1.5rem 1rem;
+  }
+  .author-card .author-photo {
+    width: 180px;
+    height: 180px;
+    min-width: 180px;
+    min-height: 180px;
+  }
+}
+
+/* --- Tinh chỉnh nhỏ cho TOC + nav --- */
+nav#TOC ul {
+  list-style: none;
+  padding-left: 1rem;
+}
+nav#TOC ul ul {
+  padding-left: 1.5rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.4rem;
+}
+nav#TOC a {
+  text-decoration: none;
+}
+nav#TOC a:hover {
+  text-decoration: underline;
+}
+
+/* Code blocks readable */
+pre {
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+/* Inline code */
+code {
+  font-size: 0.92em;
+}
