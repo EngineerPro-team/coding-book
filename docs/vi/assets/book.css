@@ -628,6 +628,16 @@ html[lang="en"] .author:first-of-type::before {
   box-shadow: 0 2px 8px rgba(124, 58, 237, 0.06);
 }
 
+.mentor-callout .mentor-logo {
+  display: block;
+  width: 120px;
+  max-width: 40%;
+  height: auto;
+  margin: 0 auto 1rem auto;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(56, 152, 236, 0.18);
+}
+
 .mentor-callout p {
   margin: 0 0 1rem 0;
   line-height: 1.65;
@@ -879,6 +889,9 @@ code {
     border-color: rgba(124, 58, 237, 0.55);
     border-left-color: #a78bfa;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  .mentor-callout .mentor-logo {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
   }
 
   /* --- Video caption --- */
