@@ -616,6 +616,24 @@ html[lang="en"] .author:first-of-type::before {
   background: #6325c4;
 }
 
+/* Mentor callout — MentorPro 1-1 mentorship program (partner of EngineerPro).
+   Purple accent (vs green EngineerPro) so the two blocks are visually distinct. */
+.mentor-callout {
+  margin-top: 1.2rem;
+  padding: 1.1rem 1.25rem;
+  background: #fff;
+  border: 1px solid rgba(124, 58, 237, 0.28);
+  border-left: 4px solid #7c3aed;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.06);
+}
+
+.mentor-callout p {
+  margin: 0 0 1rem 0;
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+
 /* Floating pill CTA — fixed bottom-right (matches engineerprogurus.com/courses style) */
 .floating-cta {
   position: fixed;
@@ -852,6 +870,14 @@ code {
   .course-callout {
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(31, 157, 85, 0.45);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  /* --- Mentor callout — same fix as .course-callout for dark mode --- */
+  .mentor-callout {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(124, 58, 237, 0.55);
+    border-left-color: #a78bfa;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   }
 
