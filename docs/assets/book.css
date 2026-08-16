@@ -616,6 +616,46 @@ html[lang="en"] .author:first-of-type::before {
   background: #6325c4;
 }
 
+.course-btn-buy {
+  background: #e67e22;
+}
+
+.course-btn-buy:hover {
+  background: #d35400;
+}
+
+/* Free-preview → buy full book (replaces old donate box) */
+.buy-full-callout {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(230, 126, 34, 0.06);
+  border: 1px solid rgba(230, 126, 34, 0.35);
+  border-radius: 10px;
+}
+
+.buy-full-callout > p {
+  margin: 0 0 0.8rem 0;
+  line-height: 1.65;
+}
+
+.buy-full-end {
+  margin: 3rem 0 2rem 0;
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(230, 126, 34, 0.08), rgba(58, 122, 254, 0.06));
+  border: 1px solid rgba(230, 126, 34, 0.35);
+  border-radius: 12px;
+}
+
+.buy-full-end h2 {
+  margin-top: 0;
+}
+
+.buy-full-end p {
+  margin: 0.75rem 0;
+  line-height: 1.65;
+}
+
 /* Mentor callout — MentorPro 1-1 mentorship program (partner of EngineerPro).
    Purple accent (vs green EngineerPro) so the two blocks are visually distinct. */
 .mentor-callout {
@@ -865,6 +905,16 @@ code {
   .donate-box {
     background: rgba(255, 78, 78, 0.10);
     border-color: rgba(255, 78, 78, 0.5);
+  }
+
+  /* --- Buy full book callout --- */
+  .buy-full-callout {
+    background: rgba(230, 126, 34, 0.12);
+    border-color: rgba(230, 126, 34, 0.5);
+  }
+  .buy-full-end {
+    background: linear-gradient(135deg, rgba(230, 126, 34, 0.14), rgba(58, 122, 254, 0.10));
+    border-color: rgba(230, 126, 34, 0.5);
   }
 
   /* --- Gold sponsor — keep warm light look (dark text on light gold reads fine) --- */
